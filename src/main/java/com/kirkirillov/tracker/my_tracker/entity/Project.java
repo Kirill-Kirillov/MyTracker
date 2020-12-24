@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -22,9 +24,12 @@ public class Project {
     private LocalDate date;
 
     @Column(name = "project_name")
+    @Size(max = 50, message = "Максимум 50 символов" )
+    @NotBlank(message = "Имя проекта не должно быть пустым")
     private String name;
 
     @Column(name = "project_type")
+    @Pattern(regexp = "Duration||Quantity", message = "Duration or Quantity")
     private String type;
 
 

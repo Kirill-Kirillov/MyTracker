@@ -3,8 +3,11 @@ package com.kirkirillov.tracker.my_tracker.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -21,6 +24,7 @@ public class Quantity {
     private LocalDate date;
 
     @Column(name = "quantity_quantity")
+    @Min(value = 1, message = "Значение должно быть больше 0")
     private int quantity;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
